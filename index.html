@@ -1,1 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Calculator</title>
+
+
+
+
+
+</head>
+<body>
+  <h1>Loan Payment Calculator</h1>
+  <label for="loan-amount">Loan Amount:</label>
+  <input type="number" id="loan-amount" value="25000"><br><br>
+  <label for="interest-rate">Interest Rate (%):</label>
+  <input type="number" id="interest-rate" value="6" step="0.01"><br><br>
+  <label for="loan-term">Loan Term (years):</label>
+  <input type="number" id="loan-term" value="6"><br><br>
+  <button onclick="calculatePayment()">Calculate Payment</button>
+  <p id="result"></p>
+
+  <script>
+    function calculatePayment() {
+      const principal = parseFloat(document.getElementById('loan-amount').value);
+      const annualInterestRate = parseFloat(document.getElementById('interest-rate').value) / 100;
+      const years = parseInt(document.getElementById('loan-term').value);
+      const monthlyInterestRate = annualInterestRate / 12;
+      const months = years * 12;
+      
+      const monthlyPayment = principal * (monthlyInterestRate * Math.pow(1 + monthlyInterestRate, months)) / (Math.pow(1 + monthlyInterestRate, months) - 1);
+      
+      document.getElementById('result').innerHTML = `If you have a $${principal.toFixed(2)} loan for ${years} years at ${annualInterestRate*100}% interest, your monthly payment will be: $${monthlyPayment.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>
+
+
 
